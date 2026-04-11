@@ -17,6 +17,9 @@ public class ShootController : MonoBehaviour
     Transform shootPoint = null;
 
     [SerializeField]
+    Transform hoopPoint = null;
+
+    [SerializeField]
     TrajectoryPredictor trajectoryPredictor = null;
 
     [SerializeField]
@@ -26,7 +29,7 @@ public class ShootController : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField]
-    float maxPower = 25.0f;
+    float maxPower = 20.0f;
 
     [Header("Mouse Settings")]
     [SerializeField]
@@ -54,7 +57,7 @@ public class ShootController : MonoBehaviour
     void Update()
     {
         // If not holding a ball, do not allow charging
-        if (ballHolder != null && !ballHolder.hasBall)
+        if (ballHolder != null && !ballHolder.HasBall)
         {
             return;
         }
@@ -103,7 +106,7 @@ public class ShootController : MonoBehaviour
             else
             {
                 // Apply force forward from the camera + slightly upward
-                Vector3 shootDir = transform.forward + Vector3.up * 0.5f;
+                Vector3 shootDir = transform.forward + Vector3.up * 1.5f;
 
                 // Display trajectory
                 trajectoryPredictor.gameObject.SetActive(true);
@@ -115,10 +118,13 @@ public class ShootController : MonoBehaviour
     void Shoot(float powerRatio)
     {
         GameObject ball = Instantiate(ballPrefab, shootPoint.position, shootPoint.rotation);
+        BasketBall basketBall = ball.GetComponent<BasketBall>();
+        basketBall.SetUp(hoopPoint);
+
         Rigidbody rb = ball.GetComponent<Rigidbody>();
 
         // Apply force forward from the camera + slightly upward
-        Vector3 shootDir = transform.forward + Vector3.up * 0.5f;
+        Vector3 shootDir = transform.forward + Vector3.up * 1.5f;
         rb.AddForce(shootDir.normalized * (powerRatio * maxPower), ForceMode.Impulse);
 
         // Hold a ball again after a few seconds

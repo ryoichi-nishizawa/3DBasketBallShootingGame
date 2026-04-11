@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float Speed = 3.0f;
+    [SerializeField]
+    float speed = 3.0f;
+
     PlayerInput playerInput = null;
     InputAction moveAction = null;
 
@@ -40,6 +42,6 @@ public class Player : MonoBehaviour
         Vector3 move = transform.right * input.x + transform.forward * input.y;
 
         // Apply movement
-        transform.position += move * Speed * Time.deltaTime;
+        transform.position += move * speed * Time.deltaTime;
     }
 }

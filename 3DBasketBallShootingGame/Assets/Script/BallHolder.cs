@@ -6,22 +6,15 @@ using UnityEngine;
 
 public class BallHolder : MonoBehaviour
 {
-    public bool hasBall = false;
+    public bool HasBall { get; private set; } = false;
 
     // Ball being held
-    public GameObject ballInHand;
-
-    void Start()
-    {
-        if(ballInHand != null)
-        {
-            ballInHand.SetActive(hasBall);
-        }
-    }
+    [SerializeField]
+    GameObject ballInHand = null;
 
     public void PickUp()
     {
-        hasBall = true;
+        HasBall = true;
         if(ballInHand != null)
         {
             ballInHand.SetActive(true);
@@ -30,7 +23,7 @@ public class BallHolder : MonoBehaviour
 
     public void Release()
     {
-        hasBall = false;
+        HasBall = false;
         if(ballInHand != null)
         {
             ballInHand.SetActive(false);

@@ -100,7 +100,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6350225610032759585}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fc9428278820b40adaa7f761ba737ce9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -154,3 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasketBall
   destroyDelay: 30
+  assistStrength: 5
