@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    // Ball being held
+    [SerializeField]
+    GameObject ballInHand = null;
+
     [SerializeField]
     float speed = 3.0f;
 
@@ -26,6 +30,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (moveAction == null)
+        {
+            return;
+        }
+
+        if(ballInHand.activeInHierarchy)
         {
             return;
         }
