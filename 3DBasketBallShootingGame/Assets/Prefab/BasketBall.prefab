@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6825988413685715519}
   - component: {fileID: 5063281672703793586}
   - component: {fileID: 6030647561541361890}
+  - component: {fileID: 7446832028972349585}
   m_Layer: 0
   m_Name: BasketBall
   m_TagString: Ball
@@ -140,3 +141,16 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &7446832028972349585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350225610032759585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca30f3b982e0a40789a9e447fb7ac11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasketBall
+  destroyDelay: 30

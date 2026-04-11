@@ -17,6 +17,9 @@ public class ShootController : MonoBehaviour
     Transform shootPoint = null;
 
     [SerializeField]
+    TrajectoryPredictor trajectoryPredictor = null;
+
+    [SerializeField]
     Slider powerSlider = null;
 
     BallHolder ballHolder = null;
@@ -27,7 +30,7 @@ public class ShootController : MonoBehaviour
 
     [Header("Mouse Settings")]
     [SerializeField]
-    float mouseSensitivity = 0.005f; // マウスをどれくらい動かすとパワーが溜まるか
+    float mouseSensitivity = 0.005f;
 
     Vector2 startMousePosition = Vector2.zero;
     bool isCharging = false;
@@ -79,13 +82,13 @@ public class ShootController : MonoBehaviour
             float diffY = startMousePosition.y - currentMousePosition.y;
 
             // Charge power
-            float displayPower = Mathf.Clamp(diffY * mouseSensitivity, 0.0f, 1.0f);
-            powerSlider.value = displayPower;
+            float powerRatio = Mathf.Clamp(diffY * mouseSensitivity, 0.0f, 1.0f);
+            powerSlider.value = powerRatio;
 
             // When left-click is released
             if (mouse.leftButton.wasReleasedThisFrame)
             {
-                Shoot(displayPower);
+                Shoot(powerRatio);
 
                 // Release the ball
                 if (ballHolder != null)
@@ -95,6 +98,16 @@ public class ShootController : MonoBehaviour
 
                 isCharging = false;
                 powerSlider.gameObject.SetActive(false);
+                trajectoryPredictor.gameObject.SetActive(false);
+            }
+            else
+            {
+                // Apply force forward from the camera + slightly upward
+                Vector3 shootDir = transform.forward + Vector3.up * 0.5f;
+
+                // Display trajectory
+                trajectoryPredictor.gameObject.SetActive(true);
+                trajectoryPredictor.ShowTrajectory(shootPoint.position, shootDir.normalized * (powerRatio * maxPower));
             }
         }
     }
