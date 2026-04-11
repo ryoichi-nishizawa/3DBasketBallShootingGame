@@ -10,17 +10,27 @@ using System.Collections;
 public class ShootController : MonoBehaviour
 {
     [Header("Components")]
-    public GameObject ballPrefab;
-    public Transform shootPoint;
-    public Slider powerSlider;
-    private BallHolder ballHolder;
+    [SerializeField]
+    GameObject ballPrefab = null;
+
+    [SerializeField]
+    Transform shootPoint = null;
+
+    [SerializeField]
+    Slider powerSlider = null;
+
+    BallHolder ballHolder = null;
 
     [Header("Settings")]
-    public float maxPower = 25.0f;
-    public float chargeSpeed = 1.0f;
+    [SerializeField]
+    float maxPower = 25.0f;
 
-    private float currentPower = 0.0f;
-    private bool isCharging = false;
+    [Header("Mouse Settings")]
+    [SerializeField]
+    float mouseSensitivity = 0.005f; // マウスをどれくらい動かすとパワーが溜まるか
+
+    Vector2 startMousePosition = Vector2.zero;
+    bool isCharging = false;
 
     void Awake()
     {
@@ -56,16 +66,20 @@ public class ShootController : MonoBehaviour
         if (mouse.leftButton.wasPressedThisFrame)
         {
             isCharging = true;
-            currentPower = 0f;
+            startMousePosition = mouse.position.ReadValue();
             powerSlider.gameObject.SetActive(true);
         }
 
         // Charge
         if (isCharging)
         {
+            Vector2 currentMousePosition = mouse.position.ReadValue();
+
+            // Calculate power based on downward pull (Y-axis delta)
+            float diffY = startMousePosition.y - currentMousePosition.y;
+
             // Charge power
-            currentPower += Time.deltaTime * chargeSpeed;
-            float displayPower = Mathf.PingPong(currentPower, 1f);
+            float displayPower = Mathf.Clamp(diffY * mouseSensitivity, 0.0f, 1.0f);
             powerSlider.value = displayPower;
 
             // When left-click is released
