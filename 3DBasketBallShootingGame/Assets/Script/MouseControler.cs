@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class MouseControler : MonoBehaviour
 {
     [SerializeField]
-    float mouseSensitivity = 10.0f;
+    float mouseSensitivity = 7.5f;
 
     [SerializeField]
     Transform playerBody = null;
@@ -20,7 +20,7 @@ public class MouseControler : MonoBehaviour
         xRotation = 0.0f;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
