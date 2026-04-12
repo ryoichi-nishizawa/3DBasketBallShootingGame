@@ -2993,7 +2993,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371265677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51c23e1b960c4009bc43d92c237a09e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cedbcc298a2a4d29b65a4a6e6b1d772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseControler
   mouseSensitivity: 7.5

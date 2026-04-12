@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // --------------------------------------------------
-// Mouse Controler Class
+// Mouse Controller Class
 // --------------------------------------------------
 
-public class MouseControler : MonoBehaviour
+public class MouseController : MonoBehaviour
 {
     [SerializeField]
     float mouseSensitivity = 7.5f;
