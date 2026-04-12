@@ -2995,7 +2995,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cedbcc298a2a4d29b65a4a6e6b1d772, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MouseControler
+  m_EditorClassIdentifier: Assembly-CSharp::MouseController
   mouseSensitivity: 7.5
   playerBody: {fileID: 1034493360}
 --- !u!1 &1559653813
