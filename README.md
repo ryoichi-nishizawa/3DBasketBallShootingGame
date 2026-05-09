@@ -1,5 +1,4 @@
 # 3DBasketBallShootingGame
-3DBasketBallShootingGame
 
 A 3D basketball shooting game built with Unity.
 Featuring smooth ball physics and shooting assistance for a better game feel.
