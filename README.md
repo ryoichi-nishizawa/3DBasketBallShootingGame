@@ -3,6 +3,9 @@
 A 3D basketball shooting game built with Unity.
 Featuring smooth ball physics and shooting assistance for a better game feel.
 
+## Editor Version
+6000.3.4f1
+
 ## Key Features
 * **Shoot Assistance**: Smart trajectory correction near the hoop.
 * **Physics-based Gameplay**: Realistic ball movement and bounce.
