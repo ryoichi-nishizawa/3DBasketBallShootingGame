@@ -21,6 +21,7 @@ public class BallHolder : MonoBehaviour
     GameObject ballInHand = null;
 
     Mouse mouse = null;
+    Coroutine PickupAndPrepareCoroutine = null;
 
     [SerializeField]
     float moveDuration = 0.3f;
@@ -32,11 +33,17 @@ public class BallHolder : MonoBehaviour
 
     public void PickUp()
     {
-        StartCoroutine(PickupAndPrepareRoutine());
+        PickupAndPrepareCoroutine = StartCoroutine(PickupAndPrepareRoutine());
     }
 
     public void Release()
     {
+        if (PickupAndPrepareCoroutine != null)
+        {
+            StopCoroutine(PickupAndPrepareCoroutine);
+            PickupAndPrepareCoroutine = null;
+        }
+
         HasBall = false;
         ballInHand.SetActive(false);
     }
@@ -73,5 +80,6 @@ public class BallHolder : MonoBehaviour
         ballInHand.transform.localRotation = Quaternion.identity;
 
         HasBall = true;
+        PickupAndPrepareCoroutine = null;
     }
 }

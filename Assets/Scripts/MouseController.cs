@@ -13,7 +13,13 @@ public class MouseController : MonoBehaviour
     [SerializeField]
     Transform playerBody = null;
 
+    Mouse mouse = null;
     float xRotation = 0.0f;
+
+    void Awake()
+    {
+        mouse = Mouse.current;
+    }
 
     void Start()
     {
@@ -22,14 +28,19 @@ public class MouseController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (!Application.isFocused)
+        {
+            return;
+        }
+
+        if (mouse.rightButton.wasPressedThisFrame)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        else if (Mouse.current.rightButton.isPressed)
+        else if (mouse.rightButton.isPressed)
         {
-            Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+            Vector2 mouseDelta = mouse.delta.ReadValue();
             float mouseX = mouseDelta.x * mouseSensitivity * Time.deltaTime;
             float mouseY = mouseDelta.y * mouseSensitivity * Time.deltaTime;
 
@@ -43,7 +54,7 @@ public class MouseController : MonoBehaviour
             // Rotate the player character horizontally (yaw)
             playerBody.Rotate(Vector3.up * mouseX);
         }
-        else if (Mouse.current.rightButton.wasReleasedThisFrame)
+        else if (mouse.rightButton.wasReleasedThisFrame)
         {
             // Enable free cursor movement when right-click is released
             Cursor.lockState = CursorLockMode.None;

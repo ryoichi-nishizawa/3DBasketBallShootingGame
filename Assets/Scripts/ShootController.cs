@@ -35,11 +35,13 @@ public class ShootController : MonoBehaviour
     [SerializeField]
     float mouseSensitivity = 0.005f;
 
+    Mouse mouse = null;
     Vector2 startMousePosition = Vector2.zero;
     bool isCharging = false;
 
     void Awake()
     {
+        mouse = Mouse.current;
         ballHolder = GetComponent<BallHolder>();
     }
 
@@ -56,14 +58,13 @@ public class ShootController : MonoBehaviour
 
     void Update()
     {
-        // If not holding a ball, do not allow charging
-        if (ballHolder != null && !ballHolder.HasBall)
+        if (!Application.isFocused)
         {
             return;
         }
 
-        var mouse = Mouse.current;
-        if (mouse == null)
+        // If not holding a ball, do not allow charging
+        if (ballHolder != null && !ballHolder.HasBall)
         {
             return;
         }
@@ -112,6 +113,27 @@ public class ShootController : MonoBehaviour
                 trajectoryPredictor.gameObject.SetActive(true);
                 trajectoryPredictor.ShowTrajectory(shootPoint.position, shootDir.normalized * (powerRatio * maxPower));
             }
+        }
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            // Hold the ball
+            ballHolder.PickUp();
+        }
+        else
+        {
+            // Release the ball
+            if (ballHolder != null)
+            {
+                ballHolder.Release();
+            }
+
+            isCharging = false;
+            powerSlider.gameObject.SetActive(false);
+            trajectoryPredictor.gameObject.SetActive(false);
         }
     }
 

@@ -8,12 +8,13 @@ public class BasketBall : MonoBehaviour
     [SerializeField]
     float assistStrength = 5.0f;
 
+    [SerializeField]
     Rigidbody rigidbody = null;
+
     Transform hoopPoint = null;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
         Destroy(gameObject, destroyDelay);
     }
 
