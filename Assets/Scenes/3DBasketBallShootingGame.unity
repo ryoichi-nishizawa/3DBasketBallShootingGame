@@ -1374,6 +1374,7 @@ GameObject:
   - component: {fileID: 718618498}
   - component: {fileID: 718618499}
   - component: {fileID: 718618502}
+  - component: {fileID: 718618503}
   m_Layer: 0
   m_Name: GoalDetector
   m_TagString: Untagged
@@ -1429,7 +1430,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6219f00d4204043b5b35a7dd96082136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoalDetector
-  ScoreText: {fileID: 1308736385}
+  scoreText: {fileID: 718618503}
+--- !u!114 &718618503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718618497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9760d785f4a5c4e30902b9127ac9bbb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextMeshProAnimator
+  textMeshPro: {fileID: 1308736385}
+  duration: 0.3
 --- !u!1 &798371664
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 // --------------------------------------------------
 // Goal Detector Class
@@ -7,7 +6,9 @@ using TMPro;
 
 public class GoalDetector : MonoBehaviour
 {
-    public TextMeshProUGUI ScoreText = null;
+    [SerializeField]
+    TextMeshProAnimator scoreText = null;
+
     int score = 0;
 
     void Awake()
@@ -17,7 +18,10 @@ public class GoalDetector : MonoBehaviour
 
     void Start()
     {
-        UpdateScoreUI();
+        if (scoreText != null)
+        {
+            scoreText.SetText(score.ToString());
+        }
     }
 
     private void OnTriggerEnter(Collider touch)
@@ -56,15 +60,11 @@ public class GoalDetector : MonoBehaviour
 #if UNITY_EDITOR
             Debug.Log("========== Score Increases : "+score+" ==========");
 #endif
-            UpdateScoreUI();
-        }
-    }
 
-    void UpdateScoreUI()
-    {
-        if (ScoreText != null)
-        {
-            ScoreText.text = score.ToString();
+            if (scoreText != null)
+            {
+                scoreText.PopinAnimation(score.ToString(), 1.5f);
+            }
         }
     }
 }

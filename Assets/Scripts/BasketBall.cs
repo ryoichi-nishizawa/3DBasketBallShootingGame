@@ -27,7 +27,7 @@ public class BasketBall : MonoBehaviour
     {
         // Apply assist only when close (within 1m) and the ball is falling.
         float dist = Vector3.Distance(transform.position, hoopPoint.position);
-        if (dist < 1.0f && GetComponent<Rigidbody>().linearVelocity.y < 0.0f)
+        if (dist < 1.0f && rigidbody.linearVelocity.y < 0.0f)
         {
             Vector3 attraction = (hoopPoint.position - transform.position).normalized;
             rigidbody.AddForce(attraction * assistStrength);
