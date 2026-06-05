@@ -34,7 +34,6 @@ Don't move from the starting position, charge your power to the **MAX**, and rel
 Check out how the game looks and feels!
 
 ![GamePlayDemo1](https://github.com/user-attachments/assets/0698eafd-cc1d-4687-8123-3f75cb52745b)
-
 ![GamePlayDemo2](https://github.com/user-attachments/assets/1a46aa5c-5092-4ca2-8553-c55d08d5a197)
 
 ---
